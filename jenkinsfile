@@ -9,6 +9,10 @@ pipeline {
          MY_VAR = "xyz"
          PROD_SERVER = credentials('userpass2')
     }
+    parameters {
+        string(name='ENVIRONMENT', defaultValue='dev', description='abc')
+        boleanParam(name='RUN_TESTS', defaultValue=true, description='xyz')
+    }
     stages {
         stage('Build') {
            steps {
@@ -22,10 +26,20 @@ pipeline {
                echo "${PROD_SERVER_PSW}"
            }
         }
-        stage('Hello') {
+        stage('Test') {
+           when {
+              expression {
+                  params.RUN_TESTS == True
+              }
+           }
+           steps {
+              echo "testing application"
+           }
+        }
+        stage('Deploy') {
             steps {
                 echo 'Hello World'
-                echo "My environment varibale is ${MY_VAR}"
+                echo "Deploying to ${params.ENVIRONMENT} varibale is ${MY_VAR}"
             }
         }
         stage('checkout'){
