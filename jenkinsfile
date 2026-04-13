@@ -10,8 +10,8 @@ pipeline {
          PROD_SERVER = credentials('userpass2')
     }
     parameters {
-        string(name='ENVIRONMENT', defaultValue='dev', description='abc')
-        boleanParam(name='RUN_TESTS', defaultValue=true, description='xyz')
+        string(name:'ENVIRONMENT', defaultValue:'dev', description:'abc')
+        booleanParam(name:'RUN_TESTS', defaultValue:true, description:'xyz')
     }
     stages {
         stage('Build') {
