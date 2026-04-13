@@ -7,11 +7,11 @@ pipeline {
     }
     stages {
         stage('Build') {
-           withCredentials([usernamePassword(credentialsId: 'userpass1', passwordVariable: 'mypassowrd', usernameVariable: 'myusername')]){
-               echo "${myusername}"
-               echo "${mypassword}" 
-           }
            steps {
+               withCredentials([usernamePassword(credentialsId: 'userpass1', passwordVariable: 'mypassowrd', usernameVariable: 'myusername')]){
+               echo "${myusername}"
+               echo "${mypassword}"
+               }
                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
                echo "${PROD_SERVER}"
                echo "${PROD_SERVER_USR}"
