@@ -7,6 +7,12 @@ pipeline {
                 echo 'Hello World'
             }
         }
+        stage('checkout'){
+            steps {
+                git url: 'https://github.com/vsvvj/jenkinslearn.git', branch: 'main'
+                sh 'ls -lrt'
+            }
+        }
     }
 }
 
