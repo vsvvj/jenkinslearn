@@ -1,21 +1,20 @@
 pipeline {
     agent { docker { image 'python:3.9' } }
     options { skipDefaultCheckout() }
+    environment {
+         MY_VAR = "xyz"
+    }
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello World'
+                echo "My environment varibale is {MY_VAR}"
             }
         }
         stage('checkout'){
             steps {
                 git url: 'https://github.com/vsvvj/jenkinslearn.git', branch: 'main'
                 sh 'ls -lrt'
-            }
-        }
-        stage('setup') {
-            steps {
-                sh "sudo pip install -r requirements.txt"
             }
         }
     }
