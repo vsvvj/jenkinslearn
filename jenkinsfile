@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
            steps {
-               withCredentials([usernamePassword(credentialsId: 'userpass1', passwordVariable: 'mypassowrd', usernameVariable: 'myusername')]){
+               withCredentials([usernamePassword(credentialsId: 'userpass1', passwordVariable: 'mypassword', usernameVariable: 'myusername')]){
                echo "${myusername}"
                echo "${mypassword}"
                }
