@@ -17,6 +17,16 @@ pipeline {
                 sh 'ls -lrt'
             }
         }
+        stage('env_variables'){
+            environment {
+                 VAR1 = "var1"
+                 VAR2 = "var2"
+            }
+            steps {
+                 echo "My first var at stage ${VAR1}"
+                 echo "My second var at stage ${VAR2}"
+            }
+        }
     }
 }
 
