@@ -1,6 +1,10 @@
 pipeline {
     agent { docker { image 'python:3.9' } }
-    options { skipDefaultCheckout() }
+    options {
+         timeout(time:1, unit: 'HOURS')
+         skipDefaultCheckout()
+         retry(3)
+    }
     environment {
          MY_VAR = "xyz"
          PROD_SERVER = credentials('userpass2')
