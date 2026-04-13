@@ -40,6 +40,20 @@ pipeline {
                  echo "My second var at stage ${VAR2}"
             }
         }
+        stage('parallel') {
+            parallel {
+              stage("job1"){
+                steps {
+                   sh "sleep 30"
+                }
+              }
+              stage('job2'){
+                steps {
+                   sh "sleep 30"
+                }
+              }  
+            }
+        }
     }
 }
 
